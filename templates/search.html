@@ -1,19 +1,27 @@
-{% extends 'base.html' %}
-
+{%extends 'base.html'%}
 {% block body %}
+
+<form action="/search" method="GET">
+    <label for="query">Search for a Boat:</label>
+    <input type="text" id="query" name="query" required>
+    <button type="submit">Search</button>
+  </form>
+  
+  {% if boats %}
+    <h2>Search Results:</h2>
     {% for boat in boats %}
-    <div class="boats" id="boat_{{ boat[0] }}">
-        <ul id="boat_ul_li">
-            <strong style="color: rgb(95, 183, 241);">BOAT INFO</strong>
+    <div class="boats">
+        <ul id="boat_ul_li"> <strong style="color: rgb(95, 183, 241);">BOAT INFO</strong>
             <li class="boat_list"> <strong>ID: </strong> {{boat[0]}}</li>
             <li class="boat_list"> <strong>BOAT NAME: </strong> {{boat[1]}}</li>
             <li class="boat_list"><strong>BOAT TYPE: </strong> {{boat[2]}}</li>
             <li class="boat_list"> <strong>OWNER ID: </strong> {{boat[3]}}</li>
             <li class="boat_list"> <strong>RENTAL PRICE: </strong> ${{boat[4]}}</li>
-            <li><a class="update_btn" href="{{ url_for('update_boat', boat_id=boat[0]) }}">CLICK HERE TO UPDATE</a></li>
-            <button type="submit">Delete Boat</button>
-        </form>
         </ul>
     </div>
     {% endfor %}
-{% endblock %}
+  {% else %}
+    <p>No results found.</p>
+  {% endif %}
+
+  {% endblock %}

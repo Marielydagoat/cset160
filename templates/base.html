@@ -11,11 +11,10 @@
         <div class="">
           <img src="../static/images/pngtree-cruise-ship-logo-template-vector-icon-illustration-water-boat-boats-vector-picture-image_10485219.png" alt="Logo" class="logo">
           <ul class="barItem">
-
-            <li><a>HOME</a></li>
-            <li>SERVICES</li>
-            <li>ABOUT</li>
-            <li>CONTACT</li>
+            <li><a href="{{ url_for('Home') }}">HOME</a></li>
+            <li><a href="{{ url_for('getBoat') }}">CREATE BOAT</a></li>
+            <li><a href="{{ url_for('search') }}">SEARCH</a></li>
+            <li><a href="{{ url_for('boats') }}">BOATS</a></li>
           </ul>
         </div>
 
