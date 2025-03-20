@@ -48,8 +48,9 @@ def search():
 
 def get_boats_from_db(query):
     query = f"%{query}%"
-    result = conn.execute(text("SELECT * FROM boats WHERE name LIKE :query OR type LIKE :query"), {"query": query}).fetchall()
+    result = conn.execute(text("SELECT * FROM boats WHERE name LIKE :query OR id LIKE :query"), {"query": query}).fetchall()
     return result
+
 
 @app.route('/boatDelete/<int:boat_id>', methods=['POST'])
 def delete_boat(boat_id):
@@ -70,7 +71,7 @@ def delete_boat(boat_id):
     
 @app.route('/boatUpdate/<int:boat_id>', methods=['GET', 'POST'])
 def update_boat(boat_id):
-    print(f"Attempting to fetch boat with ID: {boat_id}")  # Debugging line
+    print(f"Attempting to fetch boat with ID: {boat_id}") 
     if request.method == 'GET':
         boat = conn.execute(
             text("SELECT * FROM boats WHERE id = :boat_id"), {"boat_id": boat_id}).fetchone()
@@ -99,3 +100,5 @@ def update_boat(boat_id):
 
 if __name__ == '__main__':
     app.run(debug=True)#last line
+
+    
